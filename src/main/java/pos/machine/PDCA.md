@@ -1,35 +1,35 @@
 Function Name: ConvertItems
-P: 
-D:
-C:
+P: 10 mints
+D: 15 mints 
+C: 
 A:
 Function Name: loadAllItemsInfo
-P:
-D:
-C:
-A:
+P: 1 mint
+D  1 mint
+C: file already existing
+A: should know how codes works
 Function Name: calculateSubtotal
-P:
-D:
+P: 3 mints
+D: 3 mints 
 C:
 A:
 Function Name: calculateTotal
-P:
-D:
+P: 10 mints
+D: 10 mints 
 C:
 A:
 Function Name: calculateReceipt
-P:
-D:
+P: 30 mints
+D: 1hr
 C:
 A:
 Function Name: generateReceipt
-P:
-D:
+P: 10 mints
+D: 10 mints 
 C:
 A
 Function Name: printReceipt
-P:
-D:
+P: 10 mints 
+D: 7 mints
 C:
 A:
