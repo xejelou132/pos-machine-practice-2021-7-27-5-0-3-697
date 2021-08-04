@@ -23,12 +23,16 @@ public class PosMachine {
 
         for (String barcode : barcodes) {
 
-            if (item != null && barcode.equals(barcodes.get(barcodes.size() - 1)) && receiptCounter + 1 == barcodes.size() ||
-                    item != null && !barcode.equals(item.getBarcode())) {
+            if (isfDifferentBarcode(item, barcode) || isSingleEqualBarcode(item, barcode, barcodes, receiptCounter)) {
 
                 int quantity = barcodeCounter;
                 total = getTotal(quantity, item.getPrice());
                 barcodeCounter = 0;
+
+                if(isLastBarcode(receiptCounter, barcodes.size())){
+                    quantity++;
+                    total = getTotal(quantity, item.getPrice());
+                }
 
                 itemDetail += getItemDetails(item, quantity, total);
             }
@@ -42,6 +46,7 @@ public class PosMachine {
             total = 0;
         }
     }
+
 
     private String generateReceipt(String receipt, int finaltotal) {
         return "***<store earning no money>Receipt***" + space + receipt + "----------------------" + space +
@@ -59,9 +64,20 @@ public class PosMachine {
         return "Name: " + item.getName() + "," + " Quantity: " + quantity + ", Unit price: " + item.getPrice() + " (yuan), Subtotal: " + total + " (yuan)" + space;
     }
 
+    private boolean isLastBarcode(int receiptCounter, int size) {
+        return receiptCounter+1 == size;
+    }
 
     private int getTotal(int quantity, int price) {
-        return quantity * price;
+        return quantity*price;
+    }
+
+    private boolean isSingleEqualBarcode(ItemInfo item, String barcode, List<String> barcodes, int receiptCounter) {
+        return item != null && barcode.equals(barcodes.get(barcodes.size()-1)) && receiptCounter+1 == barcodes.size();
+    }
+
+    private boolean isfDifferentBarcode(ItemInfo item, String barcode) {
+        return item != null && !barcode.equals(item.getBarcode());
     }
 
 }
